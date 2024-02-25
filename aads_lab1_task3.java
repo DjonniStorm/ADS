@@ -1,37 +1,43 @@
+import java.lang.reflect.Array;
+
 public class aads_lab1_task3 {
-    public static void qSort(int[] arr){
-        if (arr.length <= 1) return;
-        int temp = arr[(arr.length - 1) / 2];
-        int[] tempArr1 = new int[arr.length / 2 - 1];
-        int[] tempArr2 = new int[arr.length / 2 - 1];
-        for (int i = 0; i < arr.length; i++){
-            if (arr[i] < temp){
-                for (int j = 0; j < arr.length / 2 - 1; j++){
-                    if (tempArr1[j] == 0) tempArr1[j] = arr[i];
-                }
-            } else {
-                for (int j = 0; j < arr.length / 2 - 1; j++){
-                    if (tempArr2[j] == 0) tempArr2[j] = arr[i];
-                }
-            }
-        }
-        printArr(tempArr1);
-        printArr(tempArr2);
+    static void qSort(int[] arr, int start, int end){
+        if ( start >= end ) 
+       {
+           return;
+       }
+       int pivot = partition (arr, start, end);
+       qSort (arr, start, pivot-1);
+       qSort (arr, pivot+1, end);
     }
+    static int partition (int[] array, int start, int end) 
+   {
+       int temp;
+       int ptr = start;
+       for ( int i = start; i < end; i++ ) 
+       {
+           if ( array[i] < array[end] )
+           {
+               temp = array[ptr];
+               array[ptr] = array[i];
+               array[i] = temp;
+               ptr += 1;
+           }
+       }
+       temp = array[ptr];
+       array[ptr] = array[end];
+       array[end] = temp; 
+       return ptr;
+   }
+
     public static void printArr(int[] arr) {
         for (int i = 0; i < arr.length; i++){
             System.out.print(arr[i] + " ");
         }
     }
-    public static void sort(int[] arr) {
-        if (arr.length <= 1) return;
-
-    }
     public static void main(String[] args) {
-        int[] arr = {0, 1, 3, 0, 6};
-        qSort(arr);
-        // for (int i = 0; i < arr.length; i++){
-        //     System.out.print(arr[i] + " ");
-        // }
+        int[] arr = {-1, 1, 21, 6, -10, 8, 37, -63, 42, 10, 0};
+        qSort(arr, 0, arr.length - 1);
+        printArr(arr);
     }
 }
