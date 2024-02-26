@@ -1,42 +1,32 @@
-import java.lang.reflect.Array;
-
 public class aads_lab1_task3 {
-    static void qSort(int[] arr, int start, int end){
-        if ( start >= end ) 
-       {
-           return;
-       }
-       int pivot = partition (arr, start, end);
-       qSort (arr, start, pivot-1);
-       qSort (arr, pivot+1, end);
+    public static void qSort(int[] arr, int left, int right) {
+        if (left >= right) return;
+        int selectedElem = sort(arr, left, right);
+        qSort(arr, left, selectedElem - 1);
+        qSort(arr, selectedElem, right);
     }
-    static int partition (int[] array, int start, int end) 
-   {
-       int temp;
-       int ptr = start;
-       for ( int i = start; i < end; i++ ) 
-       {
-           if ( array[i] < array[end] )
-           {
-               temp = array[ptr];
-               array[ptr] = array[i];
-               array[i] = temp;
-               ptr += 1;
-           }
-       }
-       temp = array[ptr];
-       array[ptr] = array[end];
-       array[end] = temp; 
-       return ptr;
-   }
+    public static int sort(int[] arr, int left, int right) {
+        int refElem = arr[(right + left) / 2];
+        while (left <= right) {
+            while (arr[left] < refElem) { left++; }
+            while (arr[right] > refElem) { right--; }
+            if (left <= right) {
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++; right--;
+            }
 
+        }
+        return left;
+    }
     public static void printArr(int[] arr) {
         for (int i = 0; i < arr.length; i++){
             System.out.print(arr[i] + " ");
         }
     }
     public static void main(String[] args) {
-        int[] arr = {-1, 1, 21, 6, -10, 8, 37, -63, 42, 10, 0};
+        int[] arr = {1, 2, -1, -2, 0};
         qSort(arr, 0, arr.length - 1);
         printArr(arr);
     }
