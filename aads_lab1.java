@@ -1,25 +1,32 @@
 public class aads_lab1 {
     public static class Node {
         String question;
+        String theme;
         Node next;
     }
-    public static class nodeOperations extends Node {
-        Node first = null;
-        public void push(String quest){
+    public static class nodeOperations extends Node{
+        Node first = null; 
+        public void push(String quest, String theme){
             Node node = new Node();
             node.question = quest;
             node.next = first;
+            node.theme = theme;
             first = node;
         }
-        public void pop(){
-            if (first != null){
+        public void pop() {
+            if (first != null) {
                 first = first.next;
             }
         }
-        public void printList(){
+        public Boolean isEmpty() {
+            if (first != null) return false;
+            return true;
+        }
+        public void printList() {
             Node node = first;
             while (node != null) {
-                System.out.println(node.question);
+                System.out.println("Theme: " + node.theme);
+                System.out.print(node.question + " => ");
                 node = node.next;
             }
             System.out.println("null");
@@ -28,13 +35,7 @@ public class aads_lab1 {
     
 
     public static void main(String[] args) {
-        String z1 = "list1";
-        String z2 = "list2";
-        String z3 = "list3";
-        String z4 = "list4";
         nodeOperations node = new nodeOperations();
-        node.printList();
-        node.pop();
-        node.printList();
+
     }
 }
