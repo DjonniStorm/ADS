@@ -1,2 +1,2 @@
 # ADS
-Algoritms and data structure course
+Algoritms and data structures course
