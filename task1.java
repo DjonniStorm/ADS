@@ -1,5 +1,6 @@
-private ArrayList<Integer> heapArray;
+import java.util.ArrayList;
 public class task1 {
+    private ArrayList<Integer> heapArray;
     public task1() {
         heapArray = new ArrayList<>();
     }

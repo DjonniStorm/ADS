@@ -12,7 +12,7 @@ public class task2 {
         for (int i = 0; i < graph.length; i++) {
             for (int j = 0; j < graph[i].length; j++) {
                 if (i == j) continue;
-                graph[i][j] = random.nextInt(0, 1);
+                graph[i][j] = random.nextInt(0, 2);
                 graph[j][i] = graph[i][j];
             }
         }
@@ -35,7 +35,7 @@ public class task2 {
         visited[v] = true;
         for (int to = 0; to < graph.length; to++) {
             if (graph[v][to] != 0 && !visited[to]) {
-
+                System.out.print(to + "  ");
                 dfs(to);
             }
         }
